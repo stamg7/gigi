@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="outer_w">
+            <div class="foto_w">
+                <img src="title.png">
+            </div>
+            <div class="messages_w">
+                    <!-- <p class="message_wrapper stam">Μωράκι μου που είσαι; Τι κάνεις;</p>
+                    <p class="message_wrapper gigi">Καλά εδω σε σκέφτομαι.. εσύ τι κάνεις σταματάκο μου;</p>
+                    <p class="message_wrapper stam">Κι εγώ σε σκέφτομαι. Δε κάνω κάτι άλλο...</p>
+                    <p class="message_wrapper gigi">αχ τι ωραία που τα λες!!!!!</p> -->
+            </div>
+            <div class="buttons_w">
+                <form>
+                    <div class="txt_w">
+                        <textarea name="message" placeholder="Μήνυμα..."></textarea>
+                    </div>
+                    <div class="send_w">
+                        <button><i class="fa fa-arrow-circle-right" style="font-size:42px"></i></button>
+                    </div>
+                </form>
+            </div>
+            <div style="clear:both; height:0%"></div>
+        </div>
+
+        <script id="message-template" type="text/html">
+            <p class="message_wrapper gigi"> {{message}} </p>
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
