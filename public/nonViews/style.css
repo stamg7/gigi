@@ -141,9 +141,6 @@ html, body{
         width: 20%;
     }
 
-    .fa.fa-arrow-circle-right{
-        
-    }
 }
 
 @media (max-width: 480px){
@@ -159,7 +156,4 @@ html, body{
         font-size: 0.8em;
     }
 
-    .fa.fa-arrow-circle-right{
-        /* font-size: 2.5em; */
-    }
 }
