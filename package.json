@@ -4,16 +4,23 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "g": "^2.0.1",
     "hbs": "^4.0.4",
     "mongodb": "^3.3.0-beta2",
+    "mongoose": "^5.6.6",
     "mustache": "^3.0.1",
     "mustache-express": "^1.2.8",
+    "nodemon": "^1.19.1",
     "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^9.0.3"
   }
 }

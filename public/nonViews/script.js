@@ -15,6 +15,23 @@ $form.addEventListener('submit', (e) => {
     socket.emit('sendMessage', {message , messageColor})
 })
 
+socket.on('initialization', (arr) => {
+    console.log($messages_w.hasChildNodes())
+    if(!$messages_w.hasChildNodes()){
+        let msg = {}
+        for(let el of arr){
+            msg.message = el.content
+            msg.messageColor = el.user
+            const html = Mustache.render($messageTemplate, {
+                msg
+            })
+        
+            $messages_w.insertAdjacentHTML('beforeend', html)
+        }
+    
+    }
+})
+
 socket.on('message', (msg) => {
 
     const html = Mustache.render($messageTemplate, {
@@ -23,6 +40,6 @@ socket.on('message', (msg) => {
 
     $messages_w.insertAdjacentHTML('beforeend', html)
 
-})
+    console.log($messages_w.hasChildNodes())
 
-console.log(socket.Nname)
+})

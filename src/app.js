@@ -3,24 +3,13 @@ const app = express()
 const path = require('path')
 const http = require('http')
 const socketio = require('socket.io')
-const mustache = require('mustache-express')
 
 const server = http.createServer(app)
 const io = socketio(server)
 
-// app.set('view engine', 'hbs')
-// const viewPath = path.join(__dirname, '../public/views')
-// app.set('views', viewPath)
-app.use(express.static(path.join(__dirname, '../public/nonViews')))
-// app.engine('html', mustache())
-// app.set('view engine', 'html')
-// const viewPath = path.join(__dirname, '../public/views')
-// app.set('views', viewPath)
+const Message = require('./mongo/connect.js')
 
-// app.get("", (req,res) => {
-//   console.log('sssss')
-//   res.sendFile(path.join(__dirname, '../public/404.html'))
-// })
+app.use(express.static(path.join(__dirname, '../public/nonViews')))
 
 app.get("/", (req,res) => {
   console.log('sssssddddd')
@@ -42,9 +31,16 @@ app.get("*", (req,res) => {
   res.sendFile(path.join(__dirname, '../public/views/404.html'))
 })
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
+
+  let arr = [];
+  arr = await Message.find({}).exec()
+
+  socket.emit('initialization', arr)
 
   socket.on('sendMessage' , (msg) => {
+    const message = new Message({ content:msg.message, user:msg.messageColor })
+    message.save()
     io.emit('message', msg)
   })
 
