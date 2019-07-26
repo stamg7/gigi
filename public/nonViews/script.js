@@ -20,6 +20,13 @@ $img.addEventListener('dblclick', () => {
     })
 })
 
+$img.addEventListener('touchmove', () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+        const message = "<a href='https://google.com/maps?q="+ position.coords.latitude + "," + position.coords.longitude + "' target='_blank'>Εδώ είμαι</a>"
+        socket.emit('sendMessage', {message, messageColor})
+    })
+})
+
 $form.addEventListener('submit', (e) => {
     e.preventDefault()
 
