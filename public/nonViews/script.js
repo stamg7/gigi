@@ -2,14 +2,23 @@ const socket = io()
 const $form = document.querySelector('form')
 const $messages_w = document.querySelector('.messages_w')
 const $messageTemplate = document.querySelector('#message-template').innerHTML
+const $locationTemplate = document.querySelector('#location-template').innerHTML
 const $message_wrapper = document.querySelector('.message_wrapper')
 const $messageTemplateForColor = document.querySelector('#message-template').firstChild
 const $msg_area = document.getElementById('msg_area')
+const $img = document.querySelector('.foto_w')
 
 const messageColor = document.cookie.split('=')[1]
 
 $msg_area.addEventListener('focus', () => {
     setTimeout(() => {$messages_w.scrollTop = $messages_w.scrollHeight * 4}, 500)
+})
+
+$img.addEventListener('dblclick', () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+        const message = "<a href='https://google.com/maps?q="+ position.coords.latitude + "," + position.coords.longitude + "' target='_blank'>Εδώ είμαι</a>"
+        socket.emit('sendMessage', {message, messageColor})
+    })
 })
 
 $form.addEventListener('submit', (e) => {
@@ -61,13 +70,7 @@ socket.on('message', (msg) => {
 const autoscroll = () => {
 
     const $newMessage = $messages_w.lastElementChild
-    console.log($messages_w.scrollHeight)
-    console.log($newMessage.offsetHeight)
-    console.log($messages_w.scrollTop)
-    console.log($messages_w.offsetHeight)
     $a = parseInt(getComputedStyle($newMessage).marginBottom)
-    console.log($a)
-
     if($messages_w.scrollHeight - $newMessage.offsetHeight - 5 <= $messages_w.scrollTop + $messages_w.offsetHeight){
         $messages_w.scrollTop = $messages_w.scrollHeight
     }
