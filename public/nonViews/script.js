@@ -9,7 +9,7 @@ const $msg_area = document.getElementById('msg_area')
 const messageColor = document.cookie.split('=')[1]
 
 $msg_area.addEventListener('focus', () => {
-    $messages_w.scrollTop = $messages_w.scrollHeight * 2
+    $messages_w.scrollTop = $messages_w.scrollHeight * 4
 })
 
 $form.addEventListener('submit', (e) => {
