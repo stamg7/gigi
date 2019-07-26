@@ -2,7 +2,6 @@ const socket = io()
 const $form = document.querySelector('form')
 const $messages_w = document.querySelector('.messages_w')
 const $messageTemplate = document.querySelector('#message-template').innerHTML
-const $locationTemplate = document.querySelector('#location-template').innerHTML
 const $message_wrapper = document.querySelector('.message_wrapper')
 const $messageTemplateForColor = document.querySelector('#message-template').firstChild
 const $msg_area = document.getElementById('msg_area')
