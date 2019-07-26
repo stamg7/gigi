@@ -3,6 +3,7 @@ const app = express()
 const path = require('path')
 const http = require('http')
 const socketio = require('socket.io')
+const ObjectId = require('mongodb').ObjectId
 
 const server = http.createServer(app)
 const io = socketio(server)
@@ -33,18 +34,25 @@ app.get("*", (req,res) => {
 
 io.on('connection', async (socket) => {
 
+  const time = Math.floor((new Date().getTime() - 604800000)/1000).toString(16) + "0000000000000000"
+
   let arr = [];
-  arr = await Message.find({}).exec()
+  arr = await Message.find({ _id: { $gt: ObjectId(time) } }).exec()
 
   socket.emit('initialization', arr)
 
-  socket.on('sendMessage' , (msg) => {
+  socket.on('sendMessage' ,async (msg) => {
     const message = new Message({ content:msg.message, user:msg.messageColor })
-    message.save()
+    const mes = await message.save()
+    msg.date = objToDate(mes._id.toString())
     io.emit('message', msg)
   })
 
 })
+
+const objToDate = (objId) =>{
+  return new Date(parseInt(objId.substring(0,8), 16) * 1000)
+}
 
 server.listen(process.env.PORT || 3000, () => {
     console.log('all ok')

@@ -16,6 +16,7 @@ $form.addEventListener('submit', (e) => {
     socket.emit('sendMessage', {message , messageColor})
 
     $msg_area.value = '';
+    $msg_area.focus()
 })
 
 socket.on('initialization', (arr) => {
@@ -24,6 +25,8 @@ socket.on('initialization', (arr) => {
         for(let el of arr){
             msg.message = el.content
             msg.messageColor = el.user
+            msg.date = objToDate(el._id.toString())
+            msg.date = moment(msg.date).format('HH:mm, DD-MM-YY');
             const html = Mustache.render($messageTemplate, {
                 msg
             })
@@ -35,8 +38,13 @@ socket.on('initialization', (arr) => {
     $messages_w.scrollTop = $messages_w.scrollHeight
 })
 
+const objToDate = (objId) =>{
+    return new Date(parseInt(objId.substring(0,8), 16) * 1000)
+}
+
 socket.on('message', (msg) => {
 
+    msg.date = moment(msg.date).format('HH:mm, DD-MM-YY')
     const html = Mustache.render($messageTemplate, {
         msg
     })

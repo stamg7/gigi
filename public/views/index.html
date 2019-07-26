@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="https://rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.css"> -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://rawgit.com/mervick/emojionearea/master/dist/emojionearea.js"></script> -->
+    
     </head>
     <body>
         <div class="outer_w">
@@ -17,6 +21,11 @@
                 <form>
                     <div class="txt_w">
                         <textarea name="message" placeholder="Μήνυμα..." id="msg_area"></textarea>
+                        <!-- <script type="text/javascript">
+                            $(document).ready(function() {
+                              $("#msg_area").emojioneArea({ standalone:true });
+                            });
+                          </script> -->
                     </div>
                     <div class="send_w">
                         <button><i class="fa fa-arrow-circle-right"></i></button>
@@ -28,10 +37,12 @@
         </div>
 
         <script id="message-template" type="text/html">
-            <p class="message_wrapper {{ msg.messageColor }}"> {{msg.message}} </p>
+            <p class="message_wrapper {{ msg.messageColor }}"> {{msg.message}} &nbsp;&nbsp;&nbsp;<span style="color:#999999; font-size:0.6em">{{ msg.date }}</span> </p>
         </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/el.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="script.js"></script>
     </body>

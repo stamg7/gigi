@@ -30,9 +30,10 @@ html, body{
 
 .messages_w{
     background-color: aliceblue;
-    max-height: calc(70% - 20px);
-    height: calc(70% - 20px);
+    max-height: calc(70% - 25px);
+    height: calc(70% - 25px);
     overflow-y:scroll;
+    padding-bottom:5px;
 }
 
 .message_wrapper{
@@ -141,6 +142,7 @@ html, body{
         width: 20%;
     }
 
+
 }
 
 @media (max-width: 480px){
@@ -156,4 +158,7 @@ html, body{
         font-size: 0.8em;
     }
 
+    .fa.fa-arrow-circle-right{
+        /* font-size: 2.5em; */
+    }
 }
