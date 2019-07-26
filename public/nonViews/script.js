@@ -8,6 +8,10 @@ const $msg_area = document.getElementById('msg_area')
 
 const messageColor = document.cookie.split('=')[1]
 
+$msg_area.addEventListener('focus', () => {
+    $messages_w.scrollTop = $messages_w.scrollHeight
+})
+
 $form.addEventListener('submit', (e) => {
     e.preventDefault()
 
