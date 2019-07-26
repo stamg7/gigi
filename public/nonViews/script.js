@@ -13,14 +13,7 @@ $msg_area.addEventListener('focus', () => {
     setTimeout(() => {$messages_w.scrollTop = $messages_w.scrollHeight * 4}, 500)
 })
 
-$img.addEventListener('dblclick', () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-        const message = "<a href='https://google.com/maps?q="+ position.coords.latitude + "," + position.coords.longitude + "' target='_blank'>Εδώ είμαι</a>"
-        socket.emit('sendMessage', {message, messageColor})
-    })
-})
-
-$img.addEventListener('touchmove', () => {
+$img.addEventListener('click', () => {
     navigator.geolocation.getCurrentPosition((position) => {
         const message = "<a href='https://google.com/maps?q="+ position.coords.latitude + "," + position.coords.longitude + "' target='_blank'>Εδώ είμαι</a>"
         socket.emit('sendMessage', {message, messageColor})
