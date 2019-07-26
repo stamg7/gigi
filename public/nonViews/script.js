@@ -30,7 +30,7 @@ socket.on('initialization', (arr) => {
             msg.message = el.content
             msg.messageColor = el.user
             msg.date = objToDate(el._id.toString())
-            msg.date = moment(msg.date).format('HH:mm, DD-MM-YY');
+            msg.date = moment(msg.date).format('HH:mm,DD/MM/YY');
             const html = Mustache.render($messageTemplate, {
                 msg
             })
