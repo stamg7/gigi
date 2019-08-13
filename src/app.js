@@ -34,10 +34,11 @@ app.get("*", (req,res) => {
 
 io.on('connection', async (socket) => {
 
-  const time = Math.floor((new Date().getTime() - 604800000)/1000).toString(16) + "0000000000000000"
+  //const time = Math.floor((new Date().getTime() - 604800000)/1000).toString(16) + "0000000000000000"
 
   let arr = [];
-  arr = await Message.find({ _id: { $gt: ObjectId(time) } }).exec()
+  //arr = await Message.find({ _id: { $gt: ObjectId(time) } }).exec()
+  arr = await Message.find({}).exec()
 
   socket.emit('initialization', arr)
 
